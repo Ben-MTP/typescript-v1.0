@@ -1,3 +1,7 @@
+// Khi copy code có thể trùng các giá trị khai báo trước đó
+// Đánh giá lại quá trình deploy
+// So sánh việc thay đổi giá thành phần của phần chuyển từ function cũ sang mới
+
 // Tạo riêng một đối tượng chứa thông tin của pokemon
 let poke: {
   id: number,
@@ -15,12 +19,12 @@ let pokemons:{
 }[] = [];
 
 // Method lay thong tin va generate template:
-function template(pokemonItem: {
+let template = (pokemonItem: {
   id: number, 
   name: string, 
   image: string, 
   type: string
-}){
+}) => {
   return `
       <div class="pokemon">
         <div>#$${pokemonItem.id}</div>
@@ -32,7 +36,7 @@ function template(pokemonItem: {
 
 // Hàm truy cập để lấy thông tin từ API
 // Gán giá trị của id vào trong một api nào đó -> ${i}
-async function fetchData(root: HTMLElement) {
+let fetchData = async (root: HTMLElement) => {
   for(let i = 1; i <= 20; i++){
     let data: Response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
     let pokemon : any = await data.json();
@@ -69,7 +73,7 @@ if(root){
 }
 
 // Thực hiện xóa trộn, đảo vị trí của các phần tử trong mảng
-function shuffle(){
+let shuffle = () => {
   for(let i = 0; i < pokemons.length; i++){
     let j = Math.round(Math.random() * pokemons.length);
 
